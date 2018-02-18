@@ -77,7 +77,7 @@ namespace Informes_Integrasens
                 else
                 {
                     FormResultado formResultado = new FormResultado(informe);
-                    formResultado.Show();
+                    formResultado.ShowDialog();
                     this.Hide();
                 }
             }

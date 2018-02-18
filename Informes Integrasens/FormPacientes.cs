@@ -17,25 +17,8 @@ namespace Informes_Integrasens
             InitializeComponent();
         }
 
-        private void Pacientes_Load(object sender, EventArgs e)
-        {
-            // TODO: esta línea de código carga datos en la tabla 'integrasensDataSet1.Pacientes' Puede moverla o quitarla según sea necesario.
-            this.pacientesTableAdapter1.Fill(this.integrasensDataSet1.Pacientes);
-            //TODO: esta línea de código carga datos en la tabla 'integrasensDataSet.Pacientes' Puede moverla o quitarla según sea necesario.
 
-            try
-            {
-                this.pacientesTableAdapter1.Fill(this.integrasensDataSet1.Pacientes);
-        }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Error en la apertura de base de datos, revise que no este abierta"); 
-            }
-
-}
-
-        private void toolStripBuscar_Click(object sender, EventArgs e)
+        private void ToolStripBuscar_Click(object sender, EventArgs e)
         {
             string querry = "Nombre <> ''";
 
@@ -48,7 +31,7 @@ namespace Informes_Integrasens
 
             try
             {
-                this.pacientesBindingSource.Filter = querry;
+                pacientesBindingSource.Filter = querry;
             }
             catch (Exception)
             {
@@ -56,10 +39,39 @@ namespace Informes_Integrasens
             }
         }
 
-        private void toolStripAltaPaciente_Click(object sender, EventArgs e)
+        private void ToolStripAltaPaciente_Click(object sender, EventArgs e)
         {
             FormAltaPaciente formAltaPaciente = new FormAltaPaciente();
             formAltaPaciente.ShowDialog();
+
+            pacientesTableAdapter.Fill(integrasensDataSet.Pacientes);
+            pacientesBindingSource.DataMember = "Pacientes";
+            pacientesBindingSource.DataSource = integrasensDataSet;
+            dataGridPacientes.DataSource = pacientesBindingSource;
+        }
+
+
+
+        private void FormPacientes_Load(object sender, EventArgs e)
+        {
+            try
+            {
+               pacientesTableAdapter.Fill(integrasensDataSet.Pacientes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la apertura de base de datos, revise que no este abierta. Error:" + ex.Message);
+            }
+
+        }
+
+        private void dataGridPacientes_DoubleClick(object sender, EventArgs e)
+        {
+            //FormSecundario frm = new FormSecundario(); //Instanciamos el Form que abriremos
+            //frm.txtCodigo.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            //frm.txtProducto.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            //frm.txtPrecio.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            //frm.Show();  //Mostramos el Form que deseamos abrir.           
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPacientes));
             this.textBoxNif = new System.Windows.Forms.TextBox();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
@@ -43,11 +44,28 @@
             this.textBoxNifRepre = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupPacientes = new System.Windows.Forms.GroupBox();
+            this.dataGridPacientes = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTxtNif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTxtNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTxtApellido1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTxtApellido2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTxtFechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTxtProvinvia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTxtPoblacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTxtMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTxtMovil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pacientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.integrasensDataSet = new Informes_Integrasens.IntegrasensDataSet();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxApell2 = new System.Windows.Forms.TextBox();
             this.textBoxMovil = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.pacientesTableAdapter = new Informes_Integrasens.IntegrasensDataSetTableAdapters.PacientesTableAdapter();
             this.toolBarraPacientes.SuspendLayout();
+            this.groupPacientes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPacientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pacientesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.integrasensDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxNif
@@ -59,14 +77,14 @@
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(445, 42);
+            this.textBoxNombre.Location = new System.Drawing.Point(421, 42);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(100, 20);
             this.textBoxNombre.TabIndex = 4;
             // 
             // textBoxApell1
             // 
-            this.textBoxApell1.Location = new System.Drawing.Point(623, 42);
+            this.textBoxApell1.Location = new System.Drawing.Point(592, 42);
             this.textBoxApell1.Name = "textBoxApell1";
             this.textBoxApell1.Size = new System.Drawing.Size(100, 20);
             this.textBoxApell1.TabIndex = 7;
@@ -83,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(395, 45);
+            this.label2.Location = new System.Drawing.Point(371, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 9;
@@ -98,7 +116,7 @@
             this.toolStripLabel1});
             this.toolBarraPacientes.Location = new System.Drawing.Point(0, 0);
             this.toolBarraPacientes.Name = "toolBarraPacientes";
-            this.toolBarraPacientes.Size = new System.Drawing.Size(1270, 25);
+            this.toolBarraPacientes.Size = new System.Drawing.Size(1074, 25);
             this.toolBarraPacientes.TabIndex = 10;
             this.toolBarraPacientes.Text = "toolStrip1";
             // 
@@ -110,7 +128,7 @@
             this.toolStripAltaPaciente.Name = "toolStripAltaPaciente";
             this.toolStripAltaPaciente.Size = new System.Drawing.Size(23, 22);
             this.toolStripAltaPaciente.Text = "toolStripButton1";
-            this.toolStripAltaPaciente.Click += new System.EventHandler(this.toolStripAltaPaciente_Click);
+            this.toolStripAltaPaciente.Click += new System.EventHandler(this.ToolStripAltaPaciente_Click);
             // 
             // toolStripAñadirPaciente
             // 
@@ -127,7 +145,7 @@
             this.toolStripBuscar.Name = "toolStripBuscar";
             this.toolStripBuscar.Size = new System.Drawing.Size(23, 22);
             this.toolStripBuscar.Text = "Buscar";
-            this.toolStripBuscar.Click += new System.EventHandler(this.toolStripBuscar_Click);
+            this.toolStripBuscar.Click += new System.EventHandler(this.ToolStripBuscar_Click);
             // 
             // toolStripLabel1
             // 
@@ -138,7 +156,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(173, 45);
+            this.label3.Location = new System.Drawing.Point(160, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 13);
             this.label3.TabIndex = 12;
@@ -146,7 +164,7 @@
             // 
             // textBoxNifRepre
             // 
-            this.textBoxNifRepre.Location = new System.Drawing.Point(272, 42);
+            this.textBoxNifRepre.Location = new System.Drawing.Point(259, 42);
             this.textBoxNifRepre.Name = "textBoxNifRepre";
             this.textBoxNifRepre.Size = new System.Drawing.Size(100, 20);
             this.textBoxNifRepre.TabIndex = 11;
@@ -154,7 +172,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(564, 45);
+            this.label5.Location = new System.Drawing.Point(533, 45);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 14;
@@ -162,17 +180,116 @@
             // 
             // groupPacientes
             // 
+            this.groupPacientes.Controls.Add(this.dataGridPacientes);
             this.groupPacientes.Location = new System.Drawing.Point(28, 85);
             this.groupPacientes.Name = "groupPacientes";
-            this.groupPacientes.Size = new System.Drawing.Size(1203, 415);
+            this.groupPacientes.Size = new System.Drawing.Size(1009, 415);
             this.groupPacientes.TabIndex = 18;
             this.groupPacientes.TabStop = false;
             this.groupPacientes.Text = "Listado de Pacientes";
             // 
+            // dataGridPacientes
+            // 
+            this.dataGridPacientes.AllowUserToAddRows = false;
+            this.dataGridPacientes.AllowUserToDeleteRows = false;
+            this.dataGridPacientes.AutoGenerateColumns = false;
+            this.dataGridPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPacientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTxtNif,
+            this.dataGridViewTxtNombre,
+            this.dataGridViewTxtApellido1,
+            this.dataGridViewTxtApellido2,
+            this.dataGridViewTxtFechaNacimiento,
+            this.DataGridViewTxtProvinvia,
+            this.DataGridViewTxtPoblacion,
+            this.dataGridViewTxtMail,
+            this.dataGridViewTxtMovil});
+            this.dataGridPacientes.DataSource = this.pacientesBindingSource;
+            this.dataGridPacientes.Location = new System.Drawing.Point(26, 39);
+            this.dataGridPacientes.Name = "dataGridPacientes";
+            this.dataGridPacientes.ReadOnly = true;
+            this.dataGridPacientes.Size = new System.Drawing.Size(951, 350);
+            this.dataGridPacientes.TabIndex = 0;
+            this.dataGridPacientes.DoubleClick += new System.EventHandler(this.dataGridPacientes_DoubleClick);
+            // 
+            // dataGridViewTxtNif
+            // 
+            this.dataGridViewTxtNif.DataPropertyName = "Nif";
+            this.dataGridViewTxtNif.HeaderText = "Nif";
+            this.dataGridViewTxtNif.Name = "dataGridViewTxtNif";
+            this.dataGridViewTxtNif.ReadOnly = true;
+            // 
+            // dataGridViewTxtNombre
+            // 
+            this.dataGridViewTxtNombre.DataPropertyName = "Nombre";
+            this.dataGridViewTxtNombre.HeaderText = "Nombre";
+            this.dataGridViewTxtNombre.Name = "dataGridViewTxtNombre";
+            this.dataGridViewTxtNombre.ReadOnly = true;
+            // 
+            // dataGridViewTxtApellido1
+            // 
+            this.dataGridViewTxtApellido1.DataPropertyName = "Apellido1";
+            this.dataGridViewTxtApellido1.HeaderText = "Apellido 1";
+            this.dataGridViewTxtApellido1.Name = "dataGridViewTxtApellido1";
+            this.dataGridViewTxtApellido1.ReadOnly = true;
+            // 
+            // dataGridViewTxtApellido2
+            // 
+            this.dataGridViewTxtApellido2.DataPropertyName = "Apellido2";
+            this.dataGridViewTxtApellido2.HeaderText = "Apellido 2";
+            this.dataGridViewTxtApellido2.Name = "dataGridViewTxtApellido2";
+            this.dataGridViewTxtApellido2.ReadOnly = true;
+            // 
+            // dataGridViewTxtFechaNacimiento
+            // 
+            this.dataGridViewTxtFechaNacimiento.DataPropertyName = "FechaNacimiento";
+            this.dataGridViewTxtFechaNacimiento.HeaderText = "Fecha Nacimiento";
+            this.dataGridViewTxtFechaNacimiento.Name = "dataGridViewTxtFechaNacimiento";
+            this.dataGridViewTxtFechaNacimiento.ReadOnly = true;
+            this.dataGridViewTxtFechaNacimiento.Width = 108;
+            // 
+            // DataGridViewTxtProvinvia
+            // 
+            this.DataGridViewTxtProvinvia.DataPropertyName = "Provincia";
+            this.DataGridViewTxtProvinvia.HeaderText = "Provincia";
+            this.DataGridViewTxtProvinvia.Name = "DataGridViewTxtProvinvia";
+            this.DataGridViewTxtProvinvia.ReadOnly = true;
+            // 
+            // DataGridViewTxtPoblacion
+            // 
+            this.DataGridViewTxtPoblacion.DataPropertyName = "Poblacion";
+            this.DataGridViewTxtPoblacion.HeaderText = "Poblacion";
+            this.DataGridViewTxtPoblacion.Name = "DataGridViewTxtPoblacion";
+            this.DataGridViewTxtPoblacion.ReadOnly = true;
+            // 
+            // dataGridViewTxtMail
+            // 
+            this.dataGridViewTxtMail.DataPropertyName = "Mail";
+            this.dataGridViewTxtMail.HeaderText = "Mail";
+            this.dataGridViewTxtMail.Name = "dataGridViewTxtMail";
+            this.dataGridViewTxtMail.ReadOnly = true;
+            // 
+            // dataGridViewTxtMovil
+            // 
+            this.dataGridViewTxtMovil.DataPropertyName = "Movil";
+            this.dataGridViewTxtMovil.HeaderText = "Movil";
+            this.dataGridViewTxtMovil.Name = "dataGridViewTxtMovil";
+            this.dataGridViewTxtMovil.ReadOnly = true;
+            // 
+            // pacientesBindingSource
+            // 
+            this.pacientesBindingSource.DataMember = "Pacientes";
+            this.pacientesBindingSource.DataSource = this.integrasensDataSet;
+            // 
+            // integrasensDataSet
+            // 
+            this.integrasensDataSet.DataSetName = "IntegrasensDataSet";
+            this.integrasensDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(751, 45);
+            this.label6.Location = new System.Drawing.Point(707, 45);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 15;
@@ -180,14 +297,14 @@
             // 
             // textBoxApell2
             // 
-            this.textBoxApell2.Location = new System.Drawing.Point(810, 42);
+            this.textBoxApell2.Location = new System.Drawing.Point(766, 42);
             this.textBoxApell2.Name = "textBoxApell2";
             this.textBoxApell2.Size = new System.Drawing.Size(100, 20);
             this.textBoxApell2.TabIndex = 16;
             // 
             // textBoxMovil
             // 
-            this.textBoxMovil.Location = new System.Drawing.Point(980, 42);
+            this.textBoxMovil.Location = new System.Drawing.Point(930, 42);
             this.textBoxMovil.Name = "textBoxMovil";
             this.textBoxMovil.Size = new System.Drawing.Size(100, 20);
             this.textBoxMovil.TabIndex = 20;
@@ -195,17 +312,21 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(942, 45);
+            this.label4.Location = new System.Drawing.Point(892, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 19;
             this.label4.Text = "Movil";
             // 
+            // pacientesTableAdapter
+            // 
+            this.pacientesTableAdapter.ClearBeforeFill = true;
+            // 
             // FormPacientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1270, 512);
+            this.ClientSize = new System.Drawing.Size(1074, 512);
             this.Controls.Add(this.textBoxMovil);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupPacientes);
@@ -222,8 +343,13 @@
             this.Controls.Add(this.textBoxNif);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPacientes";
+            this.Load += new System.EventHandler(this.FormPacientes_Load);
             this.toolBarraPacientes.ResumeLayout(false);
             this.toolBarraPacientes.PerformLayout();
+            this.groupPacientes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPacientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pacientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.integrasensDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,5 +398,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridView dataGridPacientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private IntegrasensDataSet integrasensDataSet;
+        private System.Windows.Forms.BindingSource pacientesBindingSource;
+        private IntegrasensDataSetTableAdapters.PacientesTableAdapter pacientesTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patologiaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtNif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtApellido1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtApellido2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtFechaNacimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTxtProvinvia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTxtPoblacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtMail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtMovil;
     }
 }

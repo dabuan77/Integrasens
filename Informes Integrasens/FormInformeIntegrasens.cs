@@ -42,7 +42,7 @@ namespace Informes_Integrasens
                 Informe informe = new Informe(textNombre.Text, textApellido1.Text, textApellido2.Text, textFechaNacimiento.Text, tipoInforme, comboTerapeuta.Text);
 
                 form7a35preg1 = new FormPreguntas(informe);
-                form7a35preg1.Show();
+                form7a35preg1.ShowDialog();
             }
         }      
     }
