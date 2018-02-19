@@ -12,6 +12,8 @@ namespace Informes_Integrasens
 {
     public partial class FormPacientes : Form
     {
+        private Paciente paciente = new Paciente();
+
         public FormPacientes()
         {
             InitializeComponent();
@@ -36,13 +38,17 @@ namespace Informes_Integrasens
             catch (Exception)
             {
                 MessageBox.Show("Error en la consulta realizada, revise los datos introducidos");
+                return;
             }
         }
 
         private void ToolStripAltaPaciente_Click(object sender, EventArgs e)
         {
-            FormAltaPaciente formAltaPaciente = new FormAltaPaciente();
+            FormAltaPaciente formAltaPaciente = new FormAltaPaciente(paciente);
             formAltaPaciente.ShowDialog();
+
+            FormDetallePaciente formDetallePaciente = new FormDetallePaciente(paciente);
+            formDetallePaciente.ShowDialog();
 
             pacientesTableAdapter.Fill(integrasensDataSet.Pacientes);
             pacientesBindingSource.DataMember = "Pacientes";
@@ -61,17 +67,26 @@ namespace Informes_Integrasens
             catch (Exception ex)
             {
                 MessageBox.Show("Error en la apertura de base de datos, revise que no este abierta. Error:" + ex.Message);
+                return;
             }
 
         }
 
-        private void dataGridPacientes_DoubleClick(object sender, EventArgs e)
+        private void DataGridPacientes_DoubleClick(object sender, EventArgs e)
         {
+            paciente = new Paciente(Convert.ToInt32(dataGridPacientes.CurrentRow.Cells[10].Value));
+            FormDetallePaciente formDetallePaciente = new FormDetallePaciente(paciente);
+            formDetallePaciente.ShowDialog();
             //FormSecundario frm = new FormSecundario(); //Instanciamos el Form que abriremos
             //frm.txtCodigo.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             //frm.txtProducto.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             //frm.txtPrecio.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
             //frm.Show();  //Mostramos el Form que deseamos abrir.           
+        }
+
+        private void dataGridPacientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -110,6 +110,7 @@
             this.ClientSize = new System.Drawing.Size(861, 437);
             this.Controls.Add(this.barraHerramintas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormInicio";
             this.Text = "Integrasens";
             this.barraHerramintas.ResumeLayout(false);

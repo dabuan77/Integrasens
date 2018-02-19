@@ -84,6 +84,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormDetallePaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDetallePaciente.Designer.cs">
+      <DependentUpon>FormDetallePaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAltaPaciente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,12 +138,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IntegrasensDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Paciente.cs" />
     <Compile Include="Pregunta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Validaciones.cs" />
     <EmbeddedResource Include="FormAltaPaciente.resx">
       <DependentUpon>FormAltaPaciente.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDetallePaciente.resx">
+      <DependentUpon>FormDetallePaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPreguntas.resx">
       <DependentUpon>FormPreguntas.cs</DependentUpon>
@@ -150,6 +160,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInicio.resx">
       <DependentUpon>FormInicio.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPacientes.resx">
       <DependentUpon>FormPacientes.cs</DependentUpon>

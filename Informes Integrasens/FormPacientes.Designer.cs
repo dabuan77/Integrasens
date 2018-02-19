@@ -45,7 +45,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupPacientes = new System.Windows.Forms.GroupBox();
             this.dataGridPacientes = new System.Windows.Forms.DataGridView();
+            this.pacientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.integrasensDataSet = new Informes_Integrasens.IntegrasensDataSet();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxApell2 = new System.Windows.Forms.TextBox();
+            this.textBoxMovil = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pacientesTableAdapter = new Informes_Integrasens.IntegrasensDataSetTableAdapters.PacientesTableAdapter();
             this.dataGridViewTxtNif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTxtNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTxtApellido1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTxtApellido2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,13 +62,7 @@
             this.DataGridViewTxtPoblacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTxtMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTxtMovil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pacientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.integrasensDataSet = new Informes_Integrasens.IntegrasensDataSet();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxApell2 = new System.Windows.Forms.TextBox();
-            this.textBoxMovil = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pacientesTableAdapter = new Informes_Integrasens.IntegrasensDataSetTableAdapters.PacientesTableAdapter();
+            this.dataGridViewTxtIdPac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolBarraPacientes.SuspendLayout();
             this.groupPacientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPacientes)).BeginInit();
@@ -196,6 +198,7 @@
             this.dataGridPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPacientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTxtNif,
+            this.Column2,
             this.dataGridViewTxtNombre,
             this.dataGridViewTxtApellido1,
             this.dataGridViewTxtApellido2,
@@ -203,14 +206,63 @@
             this.DataGridViewTxtProvinvia,
             this.DataGridViewTxtPoblacion,
             this.dataGridViewTxtMail,
-            this.dataGridViewTxtMovil});
+            this.dataGridViewTxtMovil,
+            this.dataGridViewTxtIdPac});
             this.dataGridPacientes.DataSource = this.pacientesBindingSource;
-            this.dataGridPacientes.Location = new System.Drawing.Point(26, 39);
+            this.dataGridPacientes.Location = new System.Drawing.Point(45, 37);
             this.dataGridPacientes.Name = "dataGridPacientes";
             this.dataGridPacientes.ReadOnly = true;
-            this.dataGridPacientes.Size = new System.Drawing.Size(951, 350);
+            this.dataGridPacientes.RowHeadersVisible = false;
+            this.dataGridPacientes.Size = new System.Drawing.Size(912, 350);
             this.dataGridPacientes.TabIndex = 0;
-            this.dataGridPacientes.DoubleClick += new System.EventHandler(this.dataGridPacientes_DoubleClick);
+            this.dataGridPacientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPacientes_CellContentClick);
+            this.dataGridPacientes.DoubleClick += new System.EventHandler(this.DataGridPacientes_DoubleClick);
+            // 
+            // pacientesBindingSource
+            // 
+            this.pacientesBindingSource.DataMember = "Pacientes";
+            this.pacientesBindingSource.DataSource = this.integrasensDataSet;
+            // 
+            // integrasensDataSet
+            // 
+            this.integrasensDataSet.DataSetName = "IntegrasensDataSet";
+            this.integrasensDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(707, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Apellido 2";
+            // 
+            // textBoxApell2
+            // 
+            this.textBoxApell2.Location = new System.Drawing.Point(766, 42);
+            this.textBoxApell2.Name = "textBoxApell2";
+            this.textBoxApell2.Size = new System.Drawing.Size(100, 20);
+            this.textBoxApell2.TabIndex = 16;
+            // 
+            // textBoxMovil
+            // 
+            this.textBoxMovil.Location = new System.Drawing.Point(930, 42);
+            this.textBoxMovil.Name = "textBoxMovil";
+            this.textBoxMovil.Size = new System.Drawing.Size(100, 20);
+            this.textBoxMovil.TabIndex = 20;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(892, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Movil";
+            // 
+            // pacientesTableAdapter
+            // 
+            this.pacientesTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridViewTxtNif
             // 
@@ -218,6 +270,14 @@
             this.dataGridViewTxtNif.HeaderText = "Nif";
             this.dataGridViewTxtNif.Name = "dataGridViewTxtNif";
             this.dataGridViewTxtNif.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Id_Paciente";
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
             // 
             // dataGridViewTxtNombre
             // 
@@ -276,51 +336,13 @@
             this.dataGridViewTxtMovil.Name = "dataGridViewTxtMovil";
             this.dataGridViewTxtMovil.ReadOnly = true;
             // 
-            // pacientesBindingSource
+            // dataGridViewTxtIdPac
             // 
-            this.pacientesBindingSource.DataMember = "Pacientes";
-            this.pacientesBindingSource.DataSource = this.integrasensDataSet;
-            // 
-            // integrasensDataSet
-            // 
-            this.integrasensDataSet.DataSetName = "IntegrasensDataSet";
-            this.integrasensDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(707, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Apellido 2";
-            // 
-            // textBoxApell2
-            // 
-            this.textBoxApell2.Location = new System.Drawing.Point(766, 42);
-            this.textBoxApell2.Name = "textBoxApell2";
-            this.textBoxApell2.Size = new System.Drawing.Size(100, 20);
-            this.textBoxApell2.TabIndex = 16;
-            // 
-            // textBoxMovil
-            // 
-            this.textBoxMovil.Location = new System.Drawing.Point(930, 42);
-            this.textBoxMovil.Name = "textBoxMovil";
-            this.textBoxMovil.Size = new System.Drawing.Size(100, 20);
-            this.textBoxMovil.TabIndex = 20;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(892, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Movil";
-            // 
-            // pacientesTableAdapter
-            // 
-            this.pacientesTableAdapter.ClearBeforeFill = true;
+            this.dataGridViewTxtIdPac.DataPropertyName = "Id_Paciente";
+            this.dataGridViewTxtIdPac.HeaderText = "Id_Paciente";
+            this.dataGridViewTxtIdPac.Name = "dataGridViewTxtIdPac";
+            this.dataGridViewTxtIdPac.ReadOnly = true;
+            this.dataGridViewTxtIdPac.Visible = false;
             // 
             // FormPacientes
             // 
@@ -406,6 +428,7 @@
         private IntegrasensDataSetTableAdapters.PacientesTableAdapter pacientesTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn patologiaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtNif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtApellido1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtApellido2;
@@ -414,5 +437,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTxtPoblacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtMail;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtMovil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTxtIdPac;
     }
 }

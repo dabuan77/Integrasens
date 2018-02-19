@@ -9,7 +9,6 @@ namespace Informes_Integrasens
 {
     public class Validaciones
     {
-
         public static bool ValidarNIF(string data)
         {
             if (data == String.Empty)

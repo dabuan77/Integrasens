@@ -16,9 +16,11 @@ namespace Informes_Integrasens
     public partial class FormAltaPaciente : Form
     {
         string connstring = Properties.Settings.Default.IntegrasensConnectionString;
+        private Paciente paciente;
 
-        public FormAltaPaciente()
+        public FormAltaPaciente(Paciente pac)
         {
+            paciente = pac;
 
             InitializeComponent();
 
@@ -61,7 +63,8 @@ namespace Informes_Integrasens
             }
             catch (Exception)
             {
-                    MessageBox.Show("Error al informar las provincias, revise los datos introducidos");
+                MessageBox.Show("Error al informar las provincias, revise los datos introducidos");
+                return;
             }
         }
 
@@ -148,6 +151,7 @@ namespace Informes_Integrasens
                 catch (Exception)
                 {
                         MessageBox.Show("Error convirtiendo datos numericos");
+                        return;
                 }
 
                 if (ValidaBBDDPacientes())
@@ -204,16 +208,48 @@ namespace Informes_Integrasens
                             a,
                             telefono);
 
+                        GenerarPaciente();
                         MessageBox.Show("Paciente registrado correctamente");
-                        this.Close();
+                        Close();
                     }
                         catch (Exception ex)
                     {
                         MessageBox.Show("Error insertando en la tabla de Pacientes, revise los datos. Error:" + ex.Message);
+                        return;
                     }
                 }
             }
-    }
+        }
+
+        private void GenerarPaciente()
+        {
+            /* recuperamos la ultima fila insertada*/
+            int idpac;
+
+            using (OleDbConnection connexion2 = new OleDbConnection(connstring))
+
+            {
+                try
+                {
+                    string query = "Select max(Id_Paciente) as MaxIdPac FROM Pacientes";
+
+                    OleDbDataAdapter daPacientes = new OleDbDataAdapter(query, connexion2);
+                    DataTable dtPac = new DataTable();
+                    daPacientes.Fill(dtPac);
+
+                    DataRow row = dtPac.Rows[0];
+
+                    idpac = Convert.ToInt32(row["MaxIdPac"]);
+
+                    paciente = new Paciente(idpac);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al acceder a la tabla de Pacientes para localizar la fila insertada. Error:" + ex.Message);
+                    return;
+                }
+            }
+        }
 
         private bool ValidaBBDDPacientes()
         {
@@ -272,7 +308,7 @@ namespace Informes_Integrasens
         private void FormAltaPaciente_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'integrasensDataSet.Tipos_via' 
-            this.tipos_viaTableAdapter.Fill(this.integrasensDataSet.Tipos_via);
+            tipos_viaTableAdapter.Fill(integrasensDataSet.Tipos_via);
 
         }
 
@@ -355,7 +391,7 @@ namespace Informes_Integrasens
                         break;
                 }
                 MessageBox.Show("El mail no tiene un formato válido");
-
+                return;
             }
         }
 
@@ -418,6 +454,7 @@ namespace Informes_Integrasens
                         break;
                 }
                 MessageBox.Show("Nif Erroneo o mal informado");
+                return;
             }
         }
 
@@ -446,6 +483,7 @@ namespace Informes_Integrasens
                 catch (Exception)
                 {
                     MessageBox.Show("Error al informar las poblaciones, revise los datos introducidos");
+                    return;
                 }
             }
         }
@@ -469,7 +507,7 @@ namespace Informes_Integrasens
                 }
 
                 MessageBox.Show("El codigo postal no tiene un formato válido");
-
+                return;
             }
         }
 
@@ -482,8 +520,8 @@ namespace Informes_Integrasens
 
             if (dias < 0) { MessageBox.Show("La fecha de nacimiento no puede ser posterior a la del dia"); tabDatosAlta.SelectedIndex = 0; dateTimeFechaNac.Focus(); return; }
 
-            if (dias > 0)
-            {
+            //if (dias > 0)
+            //{
                 int anos = dias / 365;
 
                 if (anos > 16)
@@ -518,7 +556,7 @@ namespace Informes_Integrasens
                     textMovil.BackColor = Color.White;
                     textMail.BackColor = Color.White;
                 }
-            }
+            //}
         }
     }
 }
